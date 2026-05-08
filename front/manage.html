@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="mng.css">
+</head>
+
+<body>
+    <!-- ชื่อของเว็บ เเละ ตารางเเต่ละห้องในการเปลี่ยนสถานะ -->
+    <h1 class="title-rooms">Manage Rooms</h1>
+    <div class="manage-grid">
+        กำลังโหลดข้อมูล..
+    </div>
+    <script>
+        const socket = io();
+
+        // ฟังก์ชันสำหรับดึงข้อมูลห้องจาก server เเละเเสดงผลในหน้า manage
+        async function adminrooms() {
+            const res = await fetch('/api/rooms');
+            const rooms = await res.json();
+            const roomgrid = document.querySelector('.manage-grid');
+            roomgrid.innerHTML = '';
+
+            rooms.forEach(room => {
+                roomgrid.innerHTML += `
+                    <div class="room">
+                        <div>
+                            <span class="number">ห้อง ${room.room_number}</span>
+                            สถานะ: <span class="status-room">${room.status}</span>
+                        </div>
+                        <div class="button">
+                            <button onclick="changeStatus(${room.id}, 'available')" class="bt-available">ว่าง</button>
+                            <button onclick="changeStatus(${room.id}, 'occupied')" class="bt-occupied">ไม่ว่าง</button>
+                        </div>
+                    </div>
+                    `;
+            });
+        };
+
+        // ฟังก์ชันสำหรับเปลี่ยนสถานะห้องพักเเละส่งข้อมูลไปยัง server เพื่ออัพเดตข้อมูล
+        async function changeStatus(roomId, newStatus) {
+            await fetch('/api/update-status', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: roomId, status: newStatus })
+            });
+        }
+
+        // อัปเดตสถานะห้องในหน้า manage เมื่อมีการเปลี่ยนแปลง
+        socket.on('statusChange', () => adminrooms());
+        adminrooms();
+    </script>
+</body>
+
+</html>

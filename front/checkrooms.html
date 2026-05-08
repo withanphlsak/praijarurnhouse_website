@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบห้องว่าง - ไพรเจริญเฮาส์</title>
+    <link rel="stylesheet" href="check.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <!-- navigation bar -->
+    <nav class="navbar">
+        <span class="logo-name">ไพรเจริญเฮาส์</span>
+        <div id="nav-links" class="nav-links">
+            <a href="main.html" class="nav-link">หน้าหลัก</a>
+            <a href="checkrooms.html" class="nav-link">ตรวจสอบห้องว่าง</a>
+            <a href="#" class="nav-link">คู่มือการจอง</a>
+            <a href="#" class="nav-link">ติดต่อเรา</a>
+        </div>
+        <!-- hamburger menu -->
+        <button class="icon-hamburgerbar" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- โครงสร้างห้องทั้งหมดเเบบกำลังดึงข้อมูล -->
+    <main class="container">
+        <div class="header-part">
+            <h2 class="header-title">ตรวจสอบห้องว่าง</h2>
+            <p class="header-subtitle">* คลิกที่ห้องเพื่อดูรายละเอียด</p>
+        </div>
+
+        <div id="room-grid" class="room-grid">
+            <p style="color: #9ca3af;">กำลังดึงข้อมูลจากระบบ...</p>
+        </div>
+    </main>
+
+
+
+    <script>
+        const socket = io();
+
+        // ฟังก์ชันสำหรับแสดง/ซ่อนเมนูในมือถือ
+        function myFunction() {
+            let x = document.getElementById("nav-links");
+            x.classList.toggle("show");
+        }
+
+        // ฟังก์ชันสำหรับดึงข้อมูลห้องจาก server
+        async function fetchRooms() {
+            try {
+                const res = await fetch('/api/rooms');
+                const rooms = await res.json();
+                renderRooms(rooms);
+            } catch (err) {
+                console.error("เชื่อมต่อ server ไม่ได้:", err);
+                document.getElementById('room-grid').innerHTML = '<p class="error-text">ไม่สามารถเชื่อมต่อ server ได้</p>';
+            }
+        }
+
+        // ฟังก์ชันสำหรับแสดงข้อมูลห้องในรูปแบบgrid
+        function renderRooms(rooms) {
+            const grid = document.getElementById('room-grid');
+            grid.innerHTML = '';
+
+            rooms.forEach(room => {
+                const isAvailable = room.status === 'available';
+                const statusClass = isAvailable ? 'status-available' : 'status-occupied';
+                const statusText = isAvailable ? 'ว่าง' : 'ไม่ว่าง';
+                if (room.image_url_front) {
+                    Image_front = room.image_url_front.split(',')[0];
+                }
+
+                grid.innerHTML += `
+                    <div onclick="location.href='detail_rooms.html?id=${room.id}'" class="room-style">
+                        <div class="room-image">
+                            <img src="${Image_front}">
+                        </div>
+                        <div class="room-info">
+                            <div class="room-detail">
+                                <h4>ห้อง ${room.room_number}</h4>
+                                <p class="room-price">${room.price}.- / เดือน</p>
+                            </div>
+                            <div class="status-badge ${statusClass}">
+                                ${statusText}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // รับการอัปเดตสถานะห้องจากเซิร์ฟเวอร์
+        socket.on('statusChange', () => fetchRooms());
+        fetchRooms();
+    </script>
+</body>
+
+</html>

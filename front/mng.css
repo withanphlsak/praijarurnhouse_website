@@ -1,0 +1,66 @@
+body {
+    background-color: #f3f4f6;
+    padding: 2rem;
+    font-family: sans-serif;
+}
+
+.title-rooms {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom:1.5rem;
+}
+
+.manage-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.room {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.number {
+    font-weight: bold;
+}
+
+.status-room {
+    color:#2563eb;
+}
+
+.buttons {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.bt-available:hover {
+    opacity: 0.8;
+}
+
+.bt-occupied:hover {
+    opacity: 0.8;
+}
+
+.buttons:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.bt-available {
+    background-color: #22c55e;
+}
+
+.bt-occupied {
+    background-color: #ef4444;
+}
+
+

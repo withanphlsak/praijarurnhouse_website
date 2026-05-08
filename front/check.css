@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #E6FFE6;
+    
+}
+
+/* navigation bar */
+.navbar {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e2f2e2;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+}
+
+.logo-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4a7c44;
+}
+
+.nav-links {
+    display: none;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    transition: color 0.2s;
+}
+
+
+.nav-link:hover {
+    color: #16a34a;
+}
+
+.icon-hamburgerbar {
+    color: #00A300;
+    text-decoration: none;
+    display: none;
+    border: none;
+    background-color: none;
+}
+
+.icon-hamburgerbar:hover {
+    color: #007500;
+    transition: 0.3s;
+    transform: scale(1.1);
+
+}
+
+
+/* ส่วนเนื้อหาหลัก */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+     /
+}
+
+.header-section {
+    margin-bottom: 2rem;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+}
+
+.header-subtitle {
+    color: #6b7280;
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-left: 1rem;
+}
+
+
+.room-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+
+
+/* หน้าตาของห้องพัก */
+.room-style {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f3f4f6;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.room-style:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.room-style:active {
+    transform: scale(0.98);
+}
+
+
+.room-image {
+    height: 12rem;
+    background-color: #e5e7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9ca3af;
+    overflow: hidden;
+}
+
+
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.room-info {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-detail h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.room-price {
+    color: #15803d;
+    font-weight: 600;
+}
+
+/* สถานะห้อง */
+.status-badge {
+    padding: 0.375rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.status-available {
+    background-color: rgb(135, 216, 13);
+}
+
+.status-occupied {
+    background-color: #ef4444;
+}
+
+.error-text {
+    color: #ef4444;
+}
+
+
+/* --- โหมด Desktop (จอใหญ่กว่า 768px) --- */
+@media only screen and (min-width: 769px) {
+    .nav-links {
+        display: flex !important;
+    }
+
+    .icon-hamburgerbar {
+        display: none;
+    }
+}
+
+/* --- โหมดมือถือ (จอน้อยกว่าหรือเท่ากับ 768px) --- */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        position: relative;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #00D100;
+        padding: 1rem;
+        border-top: 2px solid #007500;
+        border-bottom: 2px solid #007500;
+        z-index: 999;
+        gap: 1rem;
+    }
+    .nav-links.show {
+        display: flex;
+    }
+    .nav-link {
+        width: 100%;
+        padding: 0.5rem 0;
+        color: white;
+        background-color: #00A300;
+        border-radius: 0.375rem;
+    }
+
+    .icon-hamburgerbar {
+        display: flex;
+    }
+
+    .room-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
