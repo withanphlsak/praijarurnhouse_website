@@ -9,6 +9,9 @@ body {
     background-color: #F9E0BD;
 }
 
+
+
+
 /* navigation bar */
 .navbar {
     position: sticky;
@@ -60,119 +63,88 @@ body {
     transition: 0.3s;
 }
 
-
-/* ส่วนเนื้อหาหลัก */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    /
+/* ส่วน header */
+.header {
+    background-image: url("https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/613578813_1518699293150634_5104073489989562640_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeETTBCIya4pS3pgZBUVKFYP-3hGrjkXdqb7eEauORd2ppBF3SzESzmMHlPFs1QmFovI71B6BJyDr35bHktY5qIl&_nc_ohc=vKEkOpH78DMQ7kNvwGQeBhA&_nc_oc=Adr23k2nOrPSy3KUfsqmuDYDVv9lWYL9iJ3UbMlLHcIJPr_k2Wt-gApN_Z7tFMJdqUvgFCpy0nRu3VIJ1735JiiA&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=7oQrUYHobeu9SRGvj89Z5A&_nc_ss=7b2a8&oh=00_Af5DVUKBIfNzrwAXDvEPjRU-7PFz0Zgd6Rj_asVb6tvwWw&oe=6A04AF0A");
+    height: 60rem;
+    background-size: cover;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 19);
+    background-color: rgba(0, 0, 0, 0.4);
+    border-bottom: 0.5rem solid #F08000;
 }
 
-.header-section {
-    margin-bottom: 2rem;
+.h1-1 {
+    padding-top: 9rem;
+    padding-left: 7rem;
+    color: #ffffff;
+    font-size: 4rem;
 }
 
-.header-title {
-    font-size: 2.5rem;
+.h1-2 {
+    padding-left: 10rem;
+    color: #ffffff;
+}
+
+.detail {
+    font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
-    margin-left: 1rem;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+    color: #F08000;
+    text-align: center;
+
 }
 
-.header-subtitle {
-    color: #6b7280;
+.data {
     font-size: 1.5rem;
-    font-style: italic;
-    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 0.25rem;
+    color: #4b5563;
+    text-align: center;
+}
+
+.hr {
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #040505;
+    width: 60%;
 }
 
 
-.room-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
-}
 
 
 
-/* หน้าตาของห้องพัก */
-.room-style {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 1px solid #f3f4f6;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.room-style:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.room-style:active {
-    transform: scale(0.98);
-}
 
 
-.room-image {
-    height: 12rem;
-    background-color: #e5e7eb;
+.photo {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    color: #9ca3af;
-    overflow: hidden;
+    gap: 2rem;
+    padding: 2rem;
+    height: auto;
 }
 
+.photo-1, .photo-2 {
+    flex: 1 1 300px; /* ให้ยืดหยุ่น และมีขนาดพื้นฐาน 300px */
+    margin: 0; /* ยกเลิก margin ที่เป็นค่าคงที่เยอะๆ */
+    text-align: center;
+}
 
-.room-image img {
-    width: 100%;
-    height: 100%;
+.photo img {
+    width: 100%; 
+    max-width: 500px;
+    height: 400px;
     object-fit: cover;
-    display: block;
+    border-radius: 1rem;
+    border: 0.5rem solid #ffae00;
 }
 
-.room-info {
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.room-detail h4 {
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: #1f2937;
-}
-
-.room-price {
-    color: #15803d;
-    font-weight: 600;
-}
-
-/* สถานะห้อง */
-.status-badge {
-    padding: 0.375rem 1.25rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.status-available {
-    background-color: rgb(135, 216, 13);
-}
-
-.status-occupied {
-    background-color: #ef4444;
-}
-
-.error-text {
-    color: #ef4444;
+.name-photo-1, .name-photo-2 {
+    margin-left: 0;
+    margin-bottom: 1rem;
 }
 
 
@@ -185,13 +157,11 @@ body {
     display: flex;
     padding-bottom: 7rem;
     justify-content: space-around;
-
-
 }
 
 .tagline,.quick,.connect {
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
     margin-top: 0;
     
@@ -199,12 +169,12 @@ body {
 
 .linetag, .quick-links, .contag {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #d1d5db;
 }
 
 .link1 {
-    color: #ffffff;
+    color: #d1d5db;
     display: block;
     text-decoration: none;
 }
@@ -213,6 +183,8 @@ body {
     color: #D18100;
     transition: 0.3s;
 }
+
+
 
 
 /* --- โหมด Desktop (จอใหญ่กว่า 768px) --- */
@@ -225,6 +197,8 @@ body {
         display: none;
     }
 }
+
+
 
 /* --- โหมดมือถือ (จอน้อยกว่าหรือเท่ากับ 768px) --- */
 @media only screen and (max-width: 768px) {
@@ -257,20 +231,15 @@ body {
     .icon-hamburgerbar {
         display: flex;
     }
-
-    .room-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* เปลี่ยน footer ให้เป็นเเนวตั้ง */
 @media only screen and (max-width: 900px) {
     .footer {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; 
+        align-items: center;   
         text-align: center;
     }
-    
     .tagline, .quick, .connect {
         margin-bottom: 1rem;
     }
@@ -285,4 +254,12 @@ body {
     .h1-2 {
         padding-left: 2rem;
     }
+    .detail {
+        font-size: 2.5rem;
+        padding: auto 2rem;
+    }
+    .data {
+        padding: 0rem 2rem;
+    }
+
 }

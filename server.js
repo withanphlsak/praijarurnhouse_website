@@ -11,7 +11,7 @@ const io = new Server(server, {cors:{origin:"*"}});
 
 // การเปลี่ยนชื่อไฟล์ในการเเสดงผลหน้าเเรกจาก index.html เป็นหน้าที่เราต้องการให้เป็นหน้าเเรก
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'front', 'checkrooms.html')); //ใช้ checkrooms.html เป็นหน้าเเรกก่อนเพราะยังทำ main ไม่เสร็จ
+    res.sendFile(path.join(__dirname, 'front', 'main.html')); //ใช้ checkrooms.html เป็นหน้าเเรกก่อนเพราะยังทำ main ไม่เสร็จ
 });
 
 // เพื่ออณุญาติให้portอื่นสามารถเข้าถึงได้

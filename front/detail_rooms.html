@@ -22,7 +22,7 @@
             <a href="#" class="nav-link">ติดต่อเรา</a>
         </div>
         <!-- hamburger menu -->
-        <button  class="icon-hamburgerbar" onclick="myFunction()">
+        <button class="icon-hamburgerbar" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </button>
     </nav>
@@ -62,6 +62,40 @@
             <div id="number-of-image" class="number-image"></div>
         </div>
     </div>
+
+    <!-- footer -->
+    <footer class="footer">
+        <h3 class="tagline">
+            ไพรเจริญเฮาส์
+            <div class="linetag">
+                <p>"fdsfsdfsdfdsfsd</p>
+                <p>sdfdsfsdfsfsd"</p>
+            </div>
+        </h3>
+        <h3 class="quick">
+            Quick Links
+            <div class="quick-links">
+                <a href="main.html" class="link1">หน้าหลัก</a>
+                <a href="checkrooms.html" class="link1">ตรวจสอบห้องว่าง</a>
+                <a href="#" class="link1">คู่มือการจอง</a>
+                <a href="#" class="link1">ติดต่อเรา</a>
+            </div>
+        </h3>
+        <h3 class="connect">
+            ช่องทางติดต่อ
+            <div class="contag">
+                <p>เบอร์โทร: 081-234-5678</p>
+                <a href="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png"
+                        width="30" height="30">
+                </a>
+                <a href="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/3840px-LINE_logo.svg.png?utm_source=th.wikisource.org&utm_campaign=index&utm_content=thumbnail"
+                        width="30" height="30">
+                </a>
+            </div>
+        </h3>
+    </footer>
 
     <script>
         const socket = io();
@@ -121,14 +155,14 @@
 
         // ฟังก์ชันสำหรับแสดงสไลด์รูปภาพ
         function Slide() {
-            const imgElement = document.getElementById('room-image'); 
+            const imgElement = document.getElementById('room-image');
             const counterElement = document.getElementById('image-counter');
             imgElement.src = `/images/${roomImages[currentIndex]}`;
             imgElement.onclick = openModal;
             imgElement.style.cursor = "zoom-in";
 
             if (imgElement) {
-                
+
                 imgElement.src = `${roomImages[currentIndex]}`;
             }
 
@@ -152,7 +186,7 @@
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("fullImage");
             const captionText = document.getElementById("number-of-image");
-            const currentMainImg = document.getElementById('room-image'); 
+            const currentMainImg = document.getElementById('room-image');
 
             modal.style.display = "block";
             modalImg.src = currentMainImg.src;
@@ -164,14 +198,14 @@
             document.getElementById("imageModal").style.display = "none";
         }
 
-        
+        // ฟังก์ชันปิด modal เมื่อคลิกนอกภาพ
         window.onclick = function (event) {
             const modal = document.getElementById("imageModal");
             if (event.target == modal) {
                 closeModal();
             }
         }
-        
+
         // บอกการอัปเดตสถานะห้องจากเซิร์ฟเวอร์
         socket.on('statusChanged', () => updateView());
         updateView();

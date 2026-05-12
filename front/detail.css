@@ -6,19 +6,20 @@
 
 body {
     font-family: 'Kanit', sans-serif;
-    background-color: #E6FFE6;
+    background-color: #F9E0BD;
 }
 
 /* navigation bar */
 .navbar {
-    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    background-color: #FFAC1C;
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #e2f2e2;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #D18400;
+    z-index: 999;
 }
 
 .logo-name {
@@ -36,28 +37,27 @@ body {
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #4b5563;
+    color: #ffffff;
     transition: color 0.2s;
 }
 
 
 .nav-link:hover {
-    color: #16a34a;
+    color: #D18100;
 }
 
 .icon-hamburgerbar {
-    color: #00A300;
+    color: #A36500;
     text-decoration: none;
     display: none;
     border: none;
-    background-color: none;
+    font-size: 1.5rem;
+    background-color: #FFA500;
 }
 
 .icon-hamburgerbar:hover {
-    color: #007500;
+    color: #754800;
     transition: 0.3s;
-    transform: scale(1.1);
-
 }
 
 
@@ -69,7 +69,7 @@ body {
 }
 
 .bt-back {
-    color: #15803d;
+    color: #68460b;
     background: none;
     border: none;
     cursor: pointer;
@@ -107,6 +107,7 @@ body {
     justify-content: center;
     align-items: center
 }
+
 .bt-left {
     background-color: #929592;
     color: white;
@@ -163,13 +164,13 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     padding-top: 50px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-content {
@@ -182,8 +183,13 @@ body {
 }
 
 @keyframes zoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
 }
 
 .close-modal {
@@ -207,13 +213,14 @@ body {
 }
 
 .status-available {
-    background-color: #f3f4f6;
+    background-color: #90f864;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
     display: inline-block;
-    color: #4b5563;
+    color: #4b634d;
     font-weight: 500;
     margin-bottom: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(50, 205, 50, 0.3);
 }
 
 .bt-line {
@@ -273,6 +280,44 @@ body {
 
 
 
+/* footer */
+.footer {
+    background-color: #3E2723;
+    padding: 3rem 1.5rem;
+    margin-top: 5rem;
+    display: flex;
+    padding-bottom: 7rem;
+    justify-content: space-around;
+
+
+}
+
+.tagline,.quick,.connect {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 0;
+    
+}
+
+.linetag, .quick-links, .contag {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #d1d5db;
+}
+
+.link1 {
+    color: #ffffff;
+    display: block;
+    text-decoration: none;
+}
+
+.link1:hover {
+    color: #D18100;
+    transition: 0.3s;
+}
+
+
 /* --- โหมด Desktop จอใหญ่กว่า 768px --- */
 @media only screen and (min-width: 769px) {
     .nav-links {
@@ -284,12 +329,8 @@ body {
     }
 }
 
-/* --- โหมดมือถือ จอน้อยกว่าหรือเท่ากับ 768px --- */
+/* --- โหมด tablet จอน้อยกว่า 768px --- */
 @media only screen and (max-width: 768px) {
-    .navbar {
-        position: relative;
-    }
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -297,10 +338,10 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #00D100;
+        background-color: #FFA200;
         padding: 1rem;
-        border-top: 2px solid #007500;
-        border-bottom: 2px solid #007500;
+        border-top: 2px solid #D18400;
+        border-bottom: 2px solid #D18400;
         z-index: 999;
         gap: 1rem;
     }
@@ -313,26 +354,53 @@ body {
         width: 100%;
         padding: 0.5rem 0;
         color: white;
-        background-color: #00A300;
+        background-color: #D18400;
         border-radius: 0.375rem;
     }
 
     .icon-hamburgerbar {
         display: flex;
     }
+
     .all-black-modal {
         margin-top: 5%;
     }
+
     .close-modal {
         margin-top: 2.5%;
     }
 }
 
+/* ทำให้รูปภาพเเบบเต็ม responsive อุปกรณ์ที่จอน้อยกว่า 500px */
 @media screen and (max-width: 500px) {
     .all-black-modal {
         margin-top: 8%;
     }
     .close-modal {
         margin-top: 0.5%;
+    }
+}
+
+/* เปลี่ยน footer ให้เป็นเเนวตั้ง */
+@media only screen and (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .tagline, .quick, .connect {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ปรับให้ font พอดีกับหน้าจอ */
+@media only screen and (max-width: 492px) {
+    .h1-1 {
+        padding-left: 1rem;
+    }
+
+    .h1-2 {
+        padding-left: 2rem;
     }
 }
