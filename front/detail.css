@@ -294,7 +294,7 @@ body {
 
 .tagline,.quick,.connect {
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 500;
     margin-top: 0;
     
@@ -302,7 +302,7 @@ body {
 
 .linetag, .quick-links, .contag {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #d1d5db;
 }
 
