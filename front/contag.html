@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contag.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- navigation bar -->
+    <nav class="navbar">
+        <div class="logo-group">
+            <a href="main.html">
+                <img src="logo.png" class="logo-name">
+            </a>
+            <div class="name-dormitory">ไพรเจริญเฮาส์</div>
+        </div>
+
+        <div id="nav-links" class="nav-links">
+            <a href="main.html" class="nav-link">หน้าหลัก</a>
+            <a href="checkrooms.html" class="nav-link">ตรวจสอบห้องว่าง</a>
+            <a href="guide.html" class="nav-link">คู่มือการจอง</a>
+            <a href="contag.html" class="nav-link">ติดต่อเรา</a>
+        </div>
+        <!-- hamburger menu -->
+        <button class="icon-hamburgerbar" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </button>
+    </nav>
+
+    <div class="contact">
+        <div class="grid-block">
+            <a class="location">
+                <div class="lo">
+                    <i class="fa-solid fa-location-dot" style="color: rgb(221, 133, 21);"></i>
+                    <div class="tiyu">สถานที่</div>
+                </div>
+                <div class="detail-tiyu">18/3 หมู่ 14 ถนน มิตรภาพ ตำบลในเมือง, อำเภอเมืองขอนแก่น, จังหวัดขอนแก่น, 40000
+                </div>
+                <span class="click-all">(คลิ๊กเพื่อไป google map)</span>
+            </a>
+            <div class="call">
+                <div class="cl">
+                    <i class="fa-solid fa-phone" style="color: rgb(221, 133, 21);"></i>
+                    <div class="cl-main">เบอร์โทรติดต่อ</div>
+                </div>
+                <div class="number-phone">096-365-0168</div>
+            </div>
+            <a class="facebook">
+                <div class="face">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png" width="30"
+                    height="30" class="img-facebook">
+                    <div class="face-text">facebook</div>
+                </div>
+                <div class="name-facebook">ไพรเจริญเฮาส์</div>
+                <span class="click-all">(คลิ๊กเพื่อไป facebook)</span>
+            </a>
+            <a class="line">
+                <div class="ln">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/3840px-LINE_logo.svg.png?utm_source=th.wikisource.org&utm_campaign=index&utm_content=thumbnail"
+                    width="30" height="30" class="img-line">
+                    <div class="ln-text">line</div>
+                </div>
+                <div class="ln-name">ไพรเจริญเฮาส์</div>
+                <span class="click-all">(คลิ๊กเพื่อไป line)</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer">
+        <h3 class="tagline">
+            ไพรเจริญเฮาส์
+            <div class="linetag">
+                <p>"fdsfsdfsdfdsfsd</p>
+                <p>sdfdsfsdfsfsd"</p>
+            </div>
+        </h3>
+        <h3 class="quick">
+            Quick Links
+            <div class="quick-links">
+                <a href="main.html" class="link1">หน้าหลัก</a>
+                <a href="checkrooms.html" class="link1">ตรวจสอบห้องว่าง</a>
+                <a href="guide.html" class="link1">คู่มือการจอง</a>
+                <a href="contag.html" class="link1">ติดต่อเรา</a>
+            </div>
+        </h3>
+        <h3 class="connect">
+            ช่องทางติดต่อ
+            <div class="contag">
+                <p>เบอร์โทร: 081-234-5678</p>
+                <a href="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png"
+                        width="30" height="30">
+                </a>
+                <a href="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/3840px-LINE_logo.svg.png?utm_source=th.wikisource.org&utm_campaign=index&utm_content=thumbnail"
+                        width="30" height="30">
+                </a>
+            </div>
+        </h3>
+    </footer>
+
+    <script>
+        // ฟังก์ชันสำหรับแสดง/ซ่อนเมนูในมือถือ
+        function myFunction() {
+            let x = document.getElementById("nav-links");
+            x.classList.toggle("show");
+        }
+    </script>
+
+</body>
+
+</html>

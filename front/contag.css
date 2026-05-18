@@ -10,8 +10,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
 }
+
+
+
 
 /* navigation bar */
 .navbar {
@@ -80,121 +82,154 @@ body {
 }
 
 
-/* ส่วนเนื้อหาหลัก */
-.container {
-    max-width: 900px; /* เพิ่มจาก 900px เป็น 1200px หรือตามต้องการ */
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 1rem;
+.contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #D18100;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    height: 25rem;
 }
 
-.header-section {
-    margin-bottom: 2rem;
+.grid-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    gap: 5;
 }
 
-.header-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    margin-left: 1rem;
-}
-
-.header-subtitle {
-    color: #6b7280;
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-left: 1rem;
-}
-
-
-.room-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
-
-
-/* หน้าตาของห้องพัก */
-.room-style {
+.location {
     background-color: #ffffff;
     border-radius: 1rem;
-    overflow: hidden;
     cursor: pointer;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    width: 15rem;
+    height: 15rem;
 }
 
-.room-style:hover {
+.lo {
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    font-size: 1.5rem;
+}
+
+.tiyu {
+    padding-left: 0.5rem;
+}
+
+.detail-tiyu {
+    margin-top: 0.5rem;
+    margin-left: 2.25rem;
+    margin-right: 1rem;
+}
+
+.call {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 15rem;
+    height: 15rem;
+}
+
+.cl {
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.cl-main {
+    padding-left: 0.5rem;
+}
+
+.number-phone {
+    margin-top: 0.5rem;
+    margin-left: 2.25rem;
+    margin-right: 1rem;
+}
+
+.facebook {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 15rem;
+    height: 15rem;
+}
+
+.face {
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.face-text {
+    padding-left: 0.5rem;
+}
+
+.name-facebook {
+    margin-top: 0.5rem;
+    margin-left: 2.25rem;
+    margin-right: 1rem;
+}
+
+.line {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 15rem;
+    height: 15rem;
+}
+
+.ln {
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.ln-text {
+    padding-left: 0.5rem;
+}
+
+.ln-name {
+    margin-top: 0.5rem;
+    margin-left: 2.25rem;
+    margin-right: 1rem;
+}
+
+.click-all {
+    margin-top: 0.5rem;
+    margin-left: 2.25rem;
+    margin-right: 1rem;
+}
+
+.location:hover {
+    background-color: rgb(249, 110, 110);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
+    transition: 0.3s;
 }
-
-.room-style:active {
-    transform: scale(0.98);
+.facebook:hover {
+    background-color: #1877F2;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: 0.3s;
 }
-
-
-.room-image {
-    height: 12rem;
-    background-color: #e5e7eb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #9ca3af;
-    overflow: hidden;
+.line:hover {
+    background-color: #00C300;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: 0.3s;
 }
-
-
-.room-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.room-info {
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.room-detail h4 {
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: #1f2937;
-}
-
-.room-price {
-    color: #15803d;
-    font-weight: 600;
-}
-
-/* สถานะห้อง */
-.status-badge {
-    padding: 0.375rem 1.25rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.status-available {
-    background-color: rgb(135, 216, 13);
-}
-
-.status-occupied {
-    background-color: #ef4444;
-}
-
-.error-text {
-    color: #ef4444;
-}
-
-
 
 /* footer */
 .footer {
@@ -212,17 +247,17 @@ body {
     font-size: 1.75rem;
     font-weight: 500;
     margin-top: 0;
-    
+
 }
 
-.linetag, .quick-links, .contag {
+.linetag,.quick-links,.contag {
     margin-top: 1rem;
     font-size: 1.25rem;
     color: #d1d5db;
 }
 
 .link1 {
-    color: #ffffff;
+    color: #d1d5db;
     display: block;
     text-decoration: none;
 }
@@ -231,6 +266,8 @@ body {
     color: #D18100;
     transition: 0.3s;
 }
+
+
 
 
 /* --- โหมด Desktop (จอใหญ่กว่า 768px) --- */
@@ -243,6 +280,8 @@ body {
         display: none;
     }
 }
+
+
 
 /* --- โหมดมือถือ (จอน้อยกว่าหรือเท่ากับ 768px) --- */
 @media only screen and (max-width: 768px) {
@@ -275,10 +314,6 @@ body {
     .icon-hamburgerbar {
         display: flex;
     }
-
-    .room-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* เปลี่ยน footer ให้เป็นเเนวตั้ง */
@@ -288,8 +323,10 @@ body {
         align-items: center;
         text-align: center;
     }
-    
-    .tagline, .quick, .connect {
+
+    .tagline,
+    .quick,
+    .connect {
         margin-bottom: 1rem;
     }
 }
@@ -302,5 +339,57 @@ body {
 
     .h1-2 {
         padding-left: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .contact {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 2rem;
+        width: 90%;
+        margin: 2rem auto;
+        padding: 2rem 1rem;
+        height: auto;
+    }
+
+    .grid-block {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .location,.call,.facebook,.line {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        min-height: 15rem;
+        margin: 0 auto 2rem auto;
+        padding: 1.5rem;
+    }
+    .lo {
+        font-size: 2rem;
+    }
+    
+    .cl {
+        font-size: 2rem;
+    }
+    
+    .face {
+        font-size: 2rem;
+    }
+    
+    .ln {
+        font-size: 2rem;
+    }
+    .img-facebook {
+        width: 4rem;
+        height: 4rem;
+    }
+    .img-line {
+        width: 4rem;
+        height: 4rem;
     }
 }

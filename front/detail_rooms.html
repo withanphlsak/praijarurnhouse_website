@@ -7,19 +7,24 @@
     <title>รายละเอียดห้อง - ไพรเจริญเฮาส์</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="detail.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
     <!-- navigation bar -->
     <nav class="navbar">
-        <span class="logo-name">ไพรเจริญเฮาส์</span>
+        <div class="logo-group">
+            <a href="main.html">
+                <img src="logo.png" class="logo-name">
+            </a>
+            <div class="name-dormitory">ไพรเจริญเฮาส์</div>
+        </div>
         <div id="nav-links" class="nav-links">
             <a href="main.html" class="nav-link">หน้าหลัก</a>
             <a href="checkrooms.html" class="nav-link">ตรวจสอบห้องว่าง</a>
-            <a href="#" class="nav-link">คู่มือการจอง</a>
-            <a href="#" class="nav-link">ติดต่อเรา</a>
+            <a href="guide.html" class="nav-link">คู่มือการจอง</a>
+            <a href="contag.html" class="nav-link">ติดต่อเรา</a>
         </div>
         <!-- hamburger menu -->
         <button class="icon-hamburgerbar" onclick="myFunction()">
@@ -136,9 +141,14 @@
                     content.innerHTML = `
                 <div class="status-available">ตอนนี้ห้องว่าง</div>
                 <h2 class="room-detail">รายละเอียดห้อง</h2>
+                <h3 class="room-detail-all">${room.detail}</h3>
                 <a href="https://line.me" class="bt-line">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" class="line-icon">
-                    ทักแชทสอบถาม (Line)
+                    ทักไลน์สอบถาม (Line)
+                </a>
+                <a href="https://line.me" class="bt-facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png" class="face-icon">
+                    ทักเพจสอบถาม (facebook)
                 </a>
             `;
                 } else {

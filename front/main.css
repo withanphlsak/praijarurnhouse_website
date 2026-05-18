@@ -7,6 +7,9 @@
 body {
     font-family: 'Kanit', sans-serif;
     background-color: #F9E0BD;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -25,10 +28,25 @@ body {
     z-index: 999;
 }
 
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .logo-name {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.name-dormitory {
+    color: #ffffff;
     font-size: 1.25rem;
-    font-weight: bold;
-    color: #4a7c44;
+    font-weight: 600;
 }
 
 .nav-links {
@@ -76,13 +94,13 @@ body {
 .h1-1 {
     padding-top: 9rem;
     padding-left: 7rem;
-    color: #ffffff;
+    color: #ffff0d;
     font-size: 4rem;
 }
 
 .h1-2 {
     padding-left: 10rem;
-    color: #ffffff;
+    color: #ffff0d;
 }
 
 .detail {
@@ -102,6 +120,16 @@ body {
     color: #4b5563;
     text-align: center;
 }
+
+.data-2 {
+    font-size: 1.5rem;
+    top: 0rem;
+    margin-left: 0.25rem;
+    color: #4b5563;
+    text-align: center;
+}
+
+
 
 .hr {
     margin: auto;
@@ -127,8 +155,8 @@ body {
 }
 
 .photo-1, .photo-2 {
-    flex: 1 1 300px; /* ให้ยืดหยุ่น และมีขนาดพื้นฐาน 300px */
-    margin: 0; /* ยกเลิก margin ที่เป็นค่าคงที่เยอะๆ */
+    flex: 1 1 300px;
+    margin: 0;
     text-align: center;
 }
 
@@ -156,6 +184,7 @@ body {
     margin-top: 5rem;
     display: flex;
     padding-bottom: 7rem;
+    margin-top: auto;
     justify-content: space-around;
 }
 
@@ -252,7 +281,7 @@ body {
     }
 
     .h1-2 {
-        padding-left: 2rem;
+        padding-left: 1.5rem;
     }
     .detail {
         font-size: 2.5rem;

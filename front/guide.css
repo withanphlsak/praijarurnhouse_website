@@ -10,8 +10,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
 }
+
+
+
 
 /* navigation bar */
 .navbar {
@@ -79,120 +81,39 @@ body {
     transition: 0.3s;
 }
 
+.guide-all {
+    border-radius: 2rem;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 1000px;
+    height: auto;
+}
 
-/* ส่วนเนื้อหาหลัก */
-.container {
-    max-width: 900px; /* เพิ่มจาก 900px เป็น 1200px หรือตามต้องการ */
-    margin: 0 auto;
+.guide {
     width: 100%;
-    padding: 0 1rem;
+    text-align: center;
 }
 
-.header-section {
-    margin-bottom: 2rem;
-}
-
-.header-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    margin-left: 1rem;
-}
-
-.header-subtitle {
-    color: #6b7280;
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-left: 1rem;
-}
-
-
-.room-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
-
-
-/* หน้าตาของห้องพัก */
-.room-style {
-    background-color: #ffffff;
+.photo-1 {
+    width: 100%;
+    max-width: 900px;
+    border: 0.5rem solid #D18100;
     border-radius: 1rem;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    display: inline-block;
 }
 
-.room-style:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.room-style:active {
-    transform: scale(0.98);
+.arrow {
+    text-align: center;
+    font-size: 4rem;
 }
 
 
-.room-image {
-    height: 12rem;
-    background-color: #e5e7eb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #9ca3af;
-    overflow: hidden;
-}
 
 
-.room-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
 
-.room-info {
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.room-detail h4 {
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: #1f2937;
-}
 
-.room-price {
-    color: #15803d;
-    font-weight: 600;
-}
-
-/* สถานะห้อง */
-.status-badge {
-    padding: 0.375rem 1.25rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.status-available {
-    background-color: rgb(135, 216, 13);
-}
-
-.status-occupied {
-    background-color: #ef4444;
-}
-
-.error-text {
-    color: #ef4444;
-}
 
 
 
@@ -200,29 +121,33 @@ body {
 .footer {
     background-color: #3E2723;
     padding: 3rem 1.5rem;
-    margin-top: 5rem;
-    display: flex;
     padding-bottom: 7rem;
-    margin-top: auto;
+    display: flex;
     justify-content: space-around;
+    margin-top: auto;
+    width: 100%;
 }
 
-.tagline,.quick,.connect {
+.tagline,
+.quick,
+.connect {
     color: #ffffff;
     font-size: 1.75rem;
     font-weight: 500;
     margin-top: 0;
-    
+
 }
 
-.linetag, .quick-links, .contag {
+.linetag,
+.quick-links,
+.contag {
     margin-top: 1rem;
     font-size: 1.25rem;
     color: #d1d5db;
 }
 
 .link1 {
-    color: #ffffff;
+    color: #d1d5db;
     display: block;
     text-decoration: none;
 }
@@ -231,6 +156,8 @@ body {
     color: #D18100;
     transition: 0.3s;
 }
+
+
 
 
 /* --- โหมด Desktop (จอใหญ่กว่า 768px) --- */
@@ -243,6 +170,8 @@ body {
         display: none;
     }
 }
+
+
 
 /* --- โหมดมือถือ (จอน้อยกว่าหรือเท่ากับ 768px) --- */
 @media only screen and (max-width: 768px) {
@@ -275,10 +204,6 @@ body {
     .icon-hamburgerbar {
         display: flex;
     }
-
-    .room-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* เปลี่ยน footer ให้เป็นเเนวตั้ง */
@@ -288,8 +213,10 @@ body {
         align-items: center;
         text-align: center;
     }
-    
-    .tagline, .quick, .connect {
+
+    .tagline,
+    .quick,
+    .connect {
         margin-bottom: 1rem;
     }
 }

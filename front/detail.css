@@ -7,6 +7,9 @@
 body {
     font-family: 'Kanit', sans-serif;
     background-color: #F9E0BD;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* navigation bar */
@@ -22,10 +25,25 @@ body {
     z-index: 999;
 }
 
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .logo-name {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.name-dormitory {
+    color: #ffffff;
     font-size: 1.25rem;
-    font-weight: bold;
-    color: #4a7c44;
+    font-weight: 600;
 }
 
 .nav-links {
@@ -64,6 +82,7 @@ body {
 /* detail container */
 .detail-container {
     max-width: 650px;
+    width: 100%;
     margin: 2.5rem auto 0;
     padding: 1.5rem;
 }
@@ -236,19 +255,42 @@ body {
     justify-content: center;
     gap: 0.75rem;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: 0.2s;
     box-shadow: 0 10px 15px -3px rgba(50, 205, 50, 0.3);
+}
+
+.bt-facebook {
+    width: 100%;
+    background-color: #1877F2;
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: 0.2s;
+    box-shadow: 0 10px 15px -3px #7ab1f8;
 }
 
 .bt-line:hover {
     background-color: #28a428;
 }
 
-.bt-line:active {
-    transform: scale(0.95);
+.bt-facebook:hover {
+    background-color: #0257c7;
 }
 
 .line-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.face-icon {
     width: 2rem;
     height: 2rem;
 }
@@ -287,6 +329,7 @@ body {
     margin-top: 5rem;
     display: flex;
     padding-bottom: 7rem;
+    margin-top: auto;
     justify-content: space-around;
 
 
@@ -297,10 +340,10 @@ body {
     font-size: 1.75rem;
     font-weight: 500;
     margin-top: 0;
-    
+
 }
 
-.linetag, .quick-links, .contag {
+.linetag,.quick-links,.contag {
     margin-top: 1rem;
     font-size: 1.25rem;
     color: #d1d5db;
@@ -376,6 +419,7 @@ body {
     .all-black-modal {
         margin-top: 8%;
     }
+
     .close-modal {
         margin-top: 0.5%;
     }
@@ -388,8 +432,10 @@ body {
         align-items: center;
         text-align: center;
     }
-    
-    .tagline, .quick, .connect {
+
+    .tagline,
+    .quick,
+    .connect {
         margin-bottom: 1rem;
     }
 }
@@ -401,6 +447,6 @@ body {
     }
 
     .h1-2 {
-        padding-left: 2rem;
+        padding-left: 1.5rem;
     }
 }
