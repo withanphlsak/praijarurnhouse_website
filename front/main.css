@@ -82,14 +82,7 @@ body {
 }
 
 /* ส่วน header */
-.header {
-    background-image: url("https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/613578813_1518699293150634_5104073489989562640_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeETTBCIya4pS3pgZBUVKFYP-3hGrjkXdqb7eEauORd2ppBF3SzESzmMHlPFs1QmFovI71B6BJyDr35bHktY5qIl&_nc_ohc=vKEkOpH78DMQ7kNvwGQeBhA&_nc_oc=Adr23k2nOrPSy3KUfsqmuDYDVv9lWYL9iJ3UbMlLHcIJPr_k2Wt-gApN_Z7tFMJdqUvgFCpy0nRu3VIJ1735JiiA&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=7oQrUYHobeu9SRGvj89Z5A&_nc_ss=7b2a8&oh=00_Af5DVUKBIfNzrwAXDvEPjRU-7PFz0Zgd6Rj_asVb6tvwWw&oe=6A04AF0A");
-    height: 60rem;
-    background-size: cover;
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 19);
-    background-color: rgba(0, 0, 0, 0.4);
-    border-bottom: 0.5rem solid #F08000;
-}
+
 
 .h1-1 {
     padding-top: 9rem;

@@ -105,11 +105,13 @@ body {
 
 .location {
     background-color: #ffffff;
+    color: black;
     border-radius: 1rem;
     cursor: pointer;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     width: 15rem;
     height: 15rem;
+    text-decoration: none;
 }
 
 .lo {
@@ -156,11 +158,13 @@ body {
 
 .facebook {
     background-color: #ffffff;
+    color: black;
     border-radius: 1rem;
     cursor: pointer;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     width: 15rem;
     height: 15rem;
+    text-decoration: none;
 }
 
 .face {
@@ -182,6 +186,7 @@ body {
 
 .line {
     background-color: #ffffff;
+    color: black;
     border-radius: 1rem;
     cursor: pointer;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
