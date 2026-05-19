@@ -80,7 +80,7 @@
 
 
     <script>
-        const socket = io();
+        const socket = io(window.location.origin);
 
         // ฟังก์ชันสำหรับแสดง/ซ่อนเมนูในมือถือ
         function myFunction() {

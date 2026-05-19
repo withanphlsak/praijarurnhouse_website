@@ -3,7 +3,7 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const pool = require('./db');
-require('dotenv').config({path: './env'});
+require('dotenv').config();
 const app = express();
 const path = require('path');
 const server = http.createServer(app);
@@ -44,6 +44,6 @@ app.post('/api/update-status', async (req, res) => {
 });
 
 // ตั้งค่าเซิร์ฟเวอร์ให้ดูที่พอร์ตที่กำหนดใน env. หรือพอร์ต 5000
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
 // เซิร์ฟเวอร์เริ่มทำงานตามพอร์ตที่กำหนด เมื่อเรา run server
 server.listen(PORT,() => console.log(`server running on http://localhost:${PORT}`));
