@@ -231,6 +231,10 @@ body {
     padding: 10px 0;
 }
 
+.room-detail-all {
+    white-space: pre-line;
+}
+
 .status-available {
     background-color: #90f864;
     padding: 0.75rem 2rem;

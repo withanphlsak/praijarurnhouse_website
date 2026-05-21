@@ -6,7 +6,7 @@ if (process.env.DATABASE_URL) {
     pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-            rejectUnauthorized: false // จำเป็นต้องใส่บรรทัดนี้ เพื่อให้โค้ดคุยกับ PostgreSQL บนคลาวด์ผ่านระบบ SSL ได้อย่างปลอดภัย
+            rejectUnauthorized: false
         }
     });
 } else {
