@@ -10,20 +10,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
     <!-- navigation bar -->
     <nav class="navbar">
         <div class="logo-group">
-            <a href="main.html">
+            <a href="index.html">
                 <img src="logo.png" class="logo-name">
             </a>
             <div class="name-dormitory">ไพรเจริญเฮาส์</div>
         </div>
         <div id="nav-links" class="nav-links">
-            <a href="main.html" class="nav-link">หน้าหลัก</a>
+            <a href="index.html" class="nav-link">หน้าหลัก</a>
             <a href="checkrooms.html" class="nav-link">ตรวจสอบห้องว่าง</a>
             <a href="guide.html" class="nav-link">คู่มือการจอง</a>
             <a href="contag.html" class="nav-link">ติดต่อเรา</a>
@@ -57,7 +57,7 @@
         <h3 class="quick">
             Quick Links
             <div class="quick-links">
-                <a href="main.html" class="link1">หน้าหลัก</a>
+                <a href="index.html" class="link1">หน้าหลัก</a>
                 <a href="checkrooms.html" class="link1">ตรวจสอบห้องว่าง</a>
                 <a href="guide.html" class="link1">คู่มือการจอง</a>
                 <a href="contag.html" class="link1">ติดต่อเรา</a>
@@ -79,29 +79,31 @@
         </h3>
     </footer>
 
-
-
     <script>
-        const socket = io(window.location.origin);
+        // setting
+        const SUPABASE_URL = 'https://lttlapkgjfurwgzrfsjw.supabase.co/rest/v1/';
+        const SUPABASE_KEY = 'sb_publishable_oVzeeoFMXUBW47nCy-IpIQ_r8cKYVdP';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // ฟังก์ชันสำหรับแสดง/ซ่อนเมนูในมือถือ
+        // ฟังก์ชันแสดง/ซ่อนเมนูในมือถือ
         function myFunction() {
             let x = document.getElementById("nav-links");
             x.classList.toggle("show");
         }
 
-        // ฟังก์ชันสำหรับดึงข้อมูลห้องจาก server
+        // ฟังก์ชันดึงข้อมูลห้อง
         async function fetchRooms() {
             try {
-                const res = await fetch('/api/rooms');
-                if (!res.ok) {
-                    throw new Error('Server ส่งข้อมูลกลับมาไม่สำเร็จ');
-                }
-                const rooms = await res.json();
+                const { data: rooms, error } = await _supabase
+                    .from('rooms')
+                    .select('*')
+                    .order('id', { ascending: true });
+
+                if (error) throw error;
                 renderRooms(rooms);
             } catch (err) {
-                console.error("เชื่อมต่อ server ไม่ได้:", err);
-                document.getElementById('room-grid').innerHTML = '<p class="error-text">ไม่สามารถเชื่อมต่อ server ได้</p>';
+                console.error("เชื่อมต่อ Supabase ไม่ได้:", err);
+                document.getElementById('room-grid').innerHTML = '<p class="error-text">ไม่สามารถเชื่อมต่อฐานข้อมูลได้</p>';
             }
         }
 
@@ -114,6 +116,7 @@
                 const isAvailable = room.status === 'available';
                 const statusClass = isAvailable ? 'status-available' : 'status-occupied';
                 const statusText = isAvailable ? 'ว่าง' : 'ไม่ว่าง';
+                let Image_front = '';
                 if (room.image_url_front) {
                     Image_front = room.image_url_front.split(',')[0];
                 }
@@ -137,8 +140,13 @@
             });
         }
 
-        // รับการอัปเดตสถานะห้องจากเซิร์ฟเวอร์
-        socket.on('statusChange', () => fetchRooms());
+        //  realtime
+        _supabase
+            .channel('public:rooms')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms' }, () => fetchRooms())
+            .subscribe();
+
+        // use function    
         fetchRooms();
     </script>
 </body>

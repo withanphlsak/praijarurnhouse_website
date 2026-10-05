@@ -8,20 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
     <!-- navigation bar -->
     <nav class="navbar">
         <div class="logo-group">
-            <a href="main.html">
+            <a href="index.html">
                 <img src="logo.png" class="logo-name">
             </a>
             <div class="name-dormitory">ไพรเจริญเฮาส์</div>
         </div>
         <div id="nav-links" class="nav-links">
-            <a href="main.html" class="nav-link">หน้าหลัก</a>
+            <a href="index.html" class="nav-link">หน้าหลัก</a>
             <a href="checkrooms.html" class="nav-link">ตรวจสอบห้องว่าง</a>
             <a href="guide.html" class="nav-link">คู่มือการจอง</a>
             <a href="contag.html" class="nav-link">ติดต่อเรา</a>
@@ -79,7 +79,7 @@
         <h3 class="quick">
             Quick Links
             <div class="quick-links">
-                <a href="main.html" class="link1">หน้าหลัก</a>
+                <a href="index.html" class="link1">หน้าหลัก</a>
                 <a href="checkrooms.html" class="link1">ตรวจสอบห้องว่าง</a>
                 <a href="guide.html" class="link1">คู่มือการจอง</a>
                 <a href="contag.html" class="link1">ติดต่อเรา</a>
@@ -102,7 +102,11 @@
     </footer>
 
     <script>
-        const socket = io();
+        // setting
+        const SUPABASE_URL = 'https://lttlapkgjfurwgzrfsjw.supabase.co/rest/v1/';
+        const SUPABASE_KEY = 'sb_publishable_oVzeeoFMXUBW47nCy-IpIQ_r8cKYVdP';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         const urlParams = new URLSearchParams(window.location.search);
         const roomId = urlParams.get('id');
         let roomImages = [];
@@ -117,16 +121,18 @@
         // ฟังก์ชันดึงข้อมูลห้องและอัปเดตรายละเอียด
         async function updateView() {
             try {
-                const res = await fetch('/api/rooms');
-                const rooms = await res.json();
-                const room = rooms.find(r => r.id == roomId);
-                const content = document.getElementById('status-content');
+                const { data: rooms, error } = await _supabase
+                    .from('rooms')
+                    .select('*')
+                    .eq('id', roomId);
 
-
-                if (!room) {
+                if (error || !rooms || rooms.length === 0) {
                     document.getElementById('room-hook-data').innerText = "ไม่พบข้อมูลห้องพัก";
                     return;
                 }
+
+                const room = rooms[0];
+                const content = document.getElementById('status-content');
 
                 document.getElementById('room-hook-data').innerText = `ห้อง ${room.room_number}`;
 
@@ -166,22 +172,22 @@
         function Slide() {
             const imgElement = document.getElementById('room-image');
             const counterElement = document.getElementById('image-counter');
-            imgElement.src = `/images/${roomImages[currentIndex]}`;
+            
             imgElement.onclick = openModal;
             imgElement.style.cursor = "zoom-in";
 
-            if (imgElement) {
-
+            if (imgElement && roomImages.length > 0) {
                 imgElement.src = `${roomImages[currentIndex]}`;
             }
 
-            if (counterElement) {
+            if (counterElement && roomImages.length > 0) {
                 counterElement.innerText = `${currentIndex + 1} / ${roomImages.length}`;
             }
         }
 
         // ฟังก์ชันเปลี่ยนรูปภาพในสไลด์
         function changeSlide(direction) {
+            if (roomImages.length === 0) return;
             currentIndex += direction;
 
             if (currentIndex >= roomImages.length) currentIndex = 0;
@@ -215,8 +221,13 @@
             }
         }
 
-        // บอกการอัปเดตสถานะห้องจากเซิร์ฟเวอร์
-        socket.on('statusChanged', () => updateView());
+        // realtime
+        _supabase
+            .channel('public:rooms')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms' }, () => updateView())
+            .subscribe();
+
+        // use function
         updateView();
     </script>
 </body>
