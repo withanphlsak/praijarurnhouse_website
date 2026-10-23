@@ -139,33 +139,115 @@ body {
 
 
 .photo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ค่าเริ่มต้นจอใหญ่: แสดง 2 คอลัมน์ซ้าย-ขวา */
     gap: 2rem;
     padding: 2rem;
-    height: auto;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
 }
 
-.photo-1, .photo-2 {
-    flex: 1 1 300px;
-    margin: 0;
+.photo-box {
+    width: 100%;
     text-align: center;
 }
 
-.photo img {
-    width: 100%; 
-    max-width: 500px;
-    height: 400px;
-    object-fit: cover;
+/* กรอบ Slider และปุ่มกดเลื่อน */
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
     border-radius: 1rem;
     border: 0.5rem solid #ffae00;
+    background-color: #000;
 }
 
+.slider-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+}
 
-.name-photo-1, .name-photo-2 {
+.slide-img {
+    flex: 0 0 100%; /* บังคับให้รูปแสดงทีละรูปเต็มความกว้างกล่อง */
+    width: 100%;
+    height: 350px; /* ปรับความสูงตามต้องการ */
+    object-fit: cover;
+    cursor: pointer;
+    display: block;
+}
+
+/* ปุ่มเลื่อนซ้าย-ขวา */
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(68, 68, 68, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    z-index: 10;
+    transition: background-color 0.2s;
+}
+
+.slide-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.name-photo {
     margin-left: 0;
     margin-bottom: 1rem;
+}
+
+/* Modal สำหรับรูปภาพขยายใหญ่ (Background ทึบ) */
+.modal {
+    display: none; /* ซ่อนไว้ก่อนเริ่มต้น */
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* พื้นหลังสีดำทึบ */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* ปุ่มปิดรูปใหญ่ (กากบาท) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #ffae00;
+    transition: 0.3s;
 }
 
 
@@ -266,6 +348,14 @@ body {
         margin-bottom: 1rem;
     }
 }
+
+
+@media only screen and (max-width: 768px) {
+    .photo {
+        grid-template-columns: 1fr; /* พอดึงจอให้แคบลง จะยุบเหลือ 1 คอลัมน์เรียงลงมาทันที */
+        padding: 1rem;
+    }
+} 
 
 /* ปรับให้ font พอดีกับหน้าจอ */
 @media only screen and (max-width: 492px) {

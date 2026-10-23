@@ -20,6 +20,18 @@
         const SUPABASE_KEY = 'sb_publishable_oVzeeoFMXUBW47nCy-IpIQ_r8cKYVdP';
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+        // ตรวจสอบสิทธิ์และบังคับล็อกอินใหม่ทุกครั้งที่เข้าหน้าเว็บ
+        async function protectRouteStrict() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) {
+                alert('กรุณาเข้าสู่ระบบก่อนเข้าใช้งาน');
+                window.location.href = 'login.html';
+                return false;
+            }
+            await _supabase.auth.signOut();
+            return true;
+        }
+
         // ฟังก์ชันสำหรับดึงข้อมูลห้องเเละเเสดงผล
         async function adminrooms() {
             try {
@@ -71,14 +83,21 @@
             }
         }
 
-        // realtime
-        _supabase
-            .channel('public:rooms')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms' }, () => adminrooms())
-            .subscribe();
+        async function init() {
+            const isAuthorized = await protectRouteStrict();
+            if (isAuthorized) {
+                // use function
+                adminrooms();
 
-        // use function
-        adminrooms();
+                // realtime
+                _supabase
+                    .channel('public:rooms')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms' }, () => adminrooms())
+                    .subscribe();
+            }
+        }
+
+        init();
     </script>
 </body>
 

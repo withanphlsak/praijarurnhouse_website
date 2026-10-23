@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-card">
+        <h2>เข้าสู่ระบบ Admin</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">ชื่อผู้ใช้ / อีเมล</label>
+                <input type="text" id="username" placeholder="กรอก Username หรือ Email" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="password">รหัสผ่าน (Password)</label>
+                <input type="password" id="password" placeholder="กรอก Password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
+            <div id="errorMsg" class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        // setting
+        const SUPABASE_URL = 'https://lttlapkgjfurwgzrfsjw.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_oVzeeoFMXUBW47nCy-IpIQ_r8cKYVdP';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // ฟังก์ชันจัดการการเข้าสู่ระบบ
+        async function handleLogin(e) {
+            e.preventDefault();
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            errorMsg.innerText = '';
+
+            let loginEmail = usernameInput;
+            if (!usernameInput.includes('@')) {
+                loginEmail = `${usernameInput}@praijarurn.local`;
+            }
+
+            try {
+                const { data, error } = await _supabase.auth.signInWithPassword({
+                    email: loginEmail,
+                    password: passwordInput,
+                });
+
+                if (error) {
+                    errorMsg.innerText = 'ชื่อผู้ใช้/อีเมล หรือรหัสผ่านไม่ถูกต้อง';
+                } else {
+                    // ล็อกอินสำเร็จ เปลี่ยนหน้าไปจัดการระบบ
+                    window.location.href = 'manage.html';
+                }
+            } catch (err) {
+                console.error("เกิดข้อผิดพลาด:", err);
+                errorMsg.innerText = 'เกิดข้อผิดพลาดในการเชื่อมต่อ';
+            }
+        }
+    </script>
+</body>
+
+</html>

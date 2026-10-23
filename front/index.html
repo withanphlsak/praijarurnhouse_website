@@ -54,7 +54,8 @@
         <h1 class="detail">รายละเอียดหอพัก</h1>
         <p class="data">หอพักของเรา เป็นหอพักที่ตั้งอยู่บริเวณมหาวิทยาลัยขอนเเก่น</p>
         <span>
-            <p class="data-2">เป็นเเหล่งที่สะดวกสบายครบครันตั้งอยู่เเถวกังสดาลไกล้ มหาวิทยาลัยขอนเเก่น โรงพยาบาลศรีนครินทร์
+            <p class="data-2">เป็นเเหล่งที่สะดวกสบายครบครันตั้งอยู่เเถวกังสดาลไกล้ มหาวิทยาลัยขอนเเก่น
+                โรงพยาบาลศรีนครินทร์
             </p>
         </span>
         <span>
@@ -67,15 +68,42 @@
 
     <!-- รูปภาพของหน้าบ้านหลังบ้าน -->
     <div class="photo">
-        <div class="photo-1">
-            <h2 class="name-photo-1">หลังบ้าน</h2>
-            <img
-                src="backphoto.jpg">
+        <!-- หลังบ้าน -->
+        <div class="photo-box">
+            <h2 class="name-photo">หลังบ้าน</h2>
+            <div class="slider-container" id="slider1">
+                <button class="slide-btn prev-btn" onclick="moveSlide(1, -1)">❮</button>
+                <div class="slider-track">
+                    <img src="backphoto.jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room1.jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room1(2).jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room1(3).jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room1(4).jpg" class="slide-img" onclick="openModal(this.src)">
+                </div>
+                <button class="slide-btn next-btn" onclick="moveSlide(1, 1)">❯</button>
+            </div>
         </div>
-        <div class="photo-2">
-            <h2 class="name-photo-2">หน้าบ้าน(สำหรับเปิดกิจการ)</h2>
-            <img src="room2.jpg" class="roop2">
+
+        <!-- หน้าบ้าน -->
+        <div class="photo-box">
+            <h2 class="name-photo">หน้าบ้าน(สำหรับเปิดกิจการ)</h2>
+            <div class="slider-container" id="slider2">
+                <button class="slide-btn prev-btn" onclick="moveSlide(2, -1)">❮</button>
+                <div class="slider-track">
+                    <img src="room2.jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room2(2).jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room2(3).jpg" class="slide-img" onclick="openModal(this.src)">
+                    <img src="room2(4).jpg" class="slide-img" onclick="openModal(this.src)">
+                </div>
+                <button class="slide-btn next-btn" onclick="moveSlide(2, 1)">❯</button>
+            </div>
         </div>
+    </div>
+
+    <!-- Modal สำหรับแสดงรูปภาพขนาดใหญ่ -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImg">
     </div>
 
     <!-- footer -->
@@ -103,7 +131,8 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png"
                         width="30" height="30">
                 </a>
-                <a href="https://line.me/ti/p/9bOdqbhh_V?fbclid=IwY2xjawR-qlxleHRuA2FlbQIxMABicmlkETFpQ3dhcVVRZmY4VkY0c1k5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrIVCooQ7IrrwvQq8WtrCRQUauX3rkUcOAVRbU_obEtxnFwaplDQmqt-NCPW_aem_MoxFYTwrvCf82DD0p4K3Rg">
+                <a
+                    href="https://line.me/ti/p/9bOdqbhh_V?fbclid=IwY2xjawR-qlxleHRuA2FlbQIxMABicmlkETFpQ3dhcVVRZmY4VkY0c1k5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrIVCooQ7IrrwvQq8WtrCRQUauX3rkUcOAVRbU_obEtxnFwaplDQmqt-NCPW_aem_MoxFYTwrvCf82DD0p4K3Rg">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/3840px-LINE_logo.svg.png?utm_source=th.wikisource.org&utm_campaign=index&utm_content=thumbnail"
                         width="30" height="30">
                 </a>
@@ -117,8 +146,42 @@
             let x = document.getElementById("nav-links");
             x.classList.toggle("show");
         }
+
+        // เก็บสถานะการเลื่อนของแต่ละสไลด์ (กล่องที่ 1 และกล่องที่ 2)
+        let currentIndexes = { 1: 0, 2: 0 };
+
+        function moveSlide(sliderId, direction) {
+            const slider = document.querySelector(`#slider${sliderId} .slider-track`);
+            const images = slider.querySelectorAll('img');
+            const totalImages = images.length;
+
+            // คำนวณตำแหน่งรูปถัดไป
+            currentIndexes[sliderId] += direction;
+
+            if (currentIndexes[sliderId] >= totalImages) {
+                currentIndexes[sliderId] = 0; // วนกลับมารูปแรกสุด
+            } else if (currentIndexes[sliderId] < 0) {
+                currentIndexes[sliderId] = totalImages - 1; // วนไปรูปลำดับสุดท้าย
+            }
+
+            // เลื่อนตำแหน่งรูปภาพด้วย translateX
+            slider.style.transform = `translateX(-${currentIndexes[sliderId] * 100}%)`;
+        }
+
+        // ฟังก์ชันเปิด Modal รูปใหญ่
+        function openModal(imgSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        // ฟังก์ชันปิด Modal รูปใหญ่
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
     </script>
 </body>
 
 </html>
-  

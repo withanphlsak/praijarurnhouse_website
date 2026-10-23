@@ -221,6 +221,11 @@ body {
     cursor: pointer;
 }
 
+.close-modal:hover {
+    color: #ffae00;
+    transition: 0.3s;
+}
+
 #caption {
     margin: auto;
     display: block;
@@ -302,13 +307,13 @@ body {
 
 .status-occupied {
     background-color: #ef4444;
-    padding: 1.25rem;
-    border-radius: 1rem;
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem;
-    width: 100%;
-    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    display: inline-block;
+    color: #4b634d;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(243, 60, 60, 0.3);
 }
 
 .room-detail {
